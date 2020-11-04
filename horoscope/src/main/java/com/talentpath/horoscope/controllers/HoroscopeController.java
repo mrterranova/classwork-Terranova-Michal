@@ -1,5 +1,7 @@
 package com.talentpath.horoscope.controllers;
 
+import com.talentpath.horoscope.exceptions.HoroscopeDaoException;
+import com.talentpath.horoscope.exceptions.NullArgumentException;
 import com.talentpath.horoscope.models.HoroscopeReading;
 import com.talentpath.horoscope.models.ReadingRequest;
 import com.talentpath.horoscope.services.HoroscopeService;
@@ -19,12 +21,12 @@ public class HoroscopeController {
     HoroscopeService service;
 
     @GetMapping("/reading")
-    public HoroscopeReading getReading(String name, String birthday){
+    public HoroscopeReading getReading(String name, String birthday) throws NullArgumentException, HoroscopeDaoException {
         ReadingRequest request = new ReadingRequest();
         request.setName(name);
         request.setBirthday(LocalDate.parse(birthday));
 
-        return service.getReading( request );
+        return service.getReading( request ) ;
     }
 
 }

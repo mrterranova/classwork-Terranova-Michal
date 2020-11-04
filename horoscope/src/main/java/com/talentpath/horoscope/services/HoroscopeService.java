@@ -1,6 +1,8 @@
 package com.talentpath.horoscope.services;
 
 import com.talentpath.horoscope.daos.HoroscopeDao;
+import com.talentpath.horoscope.exceptions.HoroscopeDaoException;
+import com.talentpath.horoscope.exceptions.NullArgumentException;
 import com.talentpath.horoscope.models.HoroscopeReading;
 import com.talentpath.horoscope.models.ReadingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,14 @@ public class HoroscopeService {
     @Autowired
     HoroscopeDao dao;
 
-    public HoroscopeReading getReading(ReadingRequest reading ) {
-        HoroscopeReading toReturn = new HoroscopeReading();
+    public HoroscopeReading getReading(ReadingRequest reading ) throws NullArgumentException, HoroscopeDaoException {
+            HoroscopeReading toReturn = new HoroscopeReading();
 
-        toReturn.setName(reading.getName());
+            toReturn.setName(reading.getName());
 
-        toReturn.setSign(getSignByDate(reading.getBirthday()));
-        toReturn.setMessage(dao.getMessage(toReturn.getSign(), LocalDate.now().getMonthValue()));
-        return toReturn;
+            toReturn.setSign(getSignByDate(reading.getBirthday()));
+                toReturn.setMessage(dao.getMessage(toReturn.getSign(), LocalDate.now().getMonthValue()));
+            return toReturn;
     }
 
     private String getSignByDate(LocalDate birthday) {
