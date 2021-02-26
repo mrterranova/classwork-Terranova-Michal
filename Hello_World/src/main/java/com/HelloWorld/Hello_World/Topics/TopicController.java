@@ -1,10 +1,10 @@
-package com.HelloWorld.Hello_World.Controller;
+package com.HelloWorld.Hello_World.Topics;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TopicController {
@@ -18,8 +18,8 @@ public class TopicController {
     }
 
     @RequestMapping("/topics/{id}")
-    public Topic getTopic (@PathVariable String id){
-        return topicService.getTopic(id);
+    public Optional<Topic> getTopic (@PathVariable String id){
+       return topicService.getTopic(id);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/topics")

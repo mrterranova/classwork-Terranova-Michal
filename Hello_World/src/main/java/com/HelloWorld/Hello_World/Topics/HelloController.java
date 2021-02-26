@@ -1,4 +1,4 @@
-package com.HelloWorld.Hello_World.Controller;
+package com.HelloWorld.Hello_World.Topics;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
